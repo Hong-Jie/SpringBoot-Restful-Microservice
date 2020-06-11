@@ -29,4 +29,24 @@ public class PostsService {
 		}
 		return null;
 	}
+
+	public void addPost(Post post) {
+		posts.add(post);
+	}
+
+	public void updatePost(int id, Post newPost) {
+		for (int i=0; i<posts.size(); ++i) {
+			if (posts.get(i).getPostId() == id) {
+				posts.set(i, newPost);
+			}
+		}
+	}
+
+	public void deletePost(int id) {
+		for (int i=0; i<posts.size(); ++i) {
+			if (posts.get(i).getPostId() == id) {
+				posts.remove(i);
+			}
+		}
+	}
 }
