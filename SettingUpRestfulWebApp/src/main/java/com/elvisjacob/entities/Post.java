@@ -1,9 +1,24 @@
 package com.elvisjacob.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="posts")
 public class Post {
+	@Id
+	@Column(name="post_id")
 	private int postId;
-	private String type, text;
+	@Column(name="type")
+	private String type;
+	@Column(name="text")
+	private String text;
 	
+	public Post() {
+	}
+
 	public Post(int postId, String type, String text) {
 		this.postId = postId;
 		this.type = type;

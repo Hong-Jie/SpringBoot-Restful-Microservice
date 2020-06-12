@@ -3,33 +3,35 @@ package com.elvisjacob.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.elvisjacob.entities.Post;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.elvisjacob.entities.Post;
+import com.elvisjacob.repositories.PostsRepository;
+
+@Service
 public class PostsService {
 
-	List<Post> posts = new ArrayList<Post>();
-
-	public PostsService() {
-		posts.add(new Post(1, "DataType", "Sample text"));
-		posts.add(new Post(2, "Class", "Sample text"));
-		posts.add(new Post(3, "Object", "Sample text"));
-		posts.add(new Post(4, "Access", "Sample text"));
-		posts.add(new Post(5, "OOP", "Sample text"));
-	}
+	@Autowired
+	PostsRepository repo;
 	
 	public List<Post> getPosts(){
-		return posts;
+		List<Post> list = new ArrayList<>();
+		for (Post post: repo.findAll()) {
+			list.add(post);
+		}
+		return list;
 	}
 	
 	public Post getPost(int id) {
-		for (Post post: posts) {
+		for (Post post: repo.findAll()) {
 			if (post.getPostId() == id) {
 				return post;
 			}
 		}
 		return null;
 	}
-
+/*
 	public void addPost(Post post) {
 		posts.add(post);
 	}
@@ -49,4 +51,5 @@ public class PostsService {
 			}
 		}
 	}
+*/
 }
