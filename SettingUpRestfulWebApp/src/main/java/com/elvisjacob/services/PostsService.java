@@ -24,32 +24,19 @@ public class PostsService {
 	}
 	
 	public Post getPost(int id) {
-		for (Post post: repo.findAll()) {
-			if (post.getPostId() == id) {
-				return post;
-			}
-		}
-		return null;
-	}
-/*
-	public void addPost(Post post) {
-		posts.add(post);
+		return repo.findById(id).get();
 	}
 
-	public void updatePost(int id, Post newPost) {
-		for (int i=0; i<posts.size(); ++i) {
-			if (posts.get(i).getPostId() == id) {
-				posts.set(i, newPost);
-			}
-		}
+	public void addPost(Post post) {
+		repo.save(post);
+	}
+
+	public void updatePost(Post post) {
+		repo.save(post);
 	}
 
 	public void deletePost(int id) {
-		for (int i=0; i<posts.size(); ++i) {
-			if (posts.get(i).getPostId() == id) {
-				posts.remove(i);
-			}
-		}
+		repo.deleteById(id);
 	}
-*/
+
 }
